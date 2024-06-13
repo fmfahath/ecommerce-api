@@ -10,9 +10,13 @@ exports.getProducts = async (req, res, next) => {
     })
 }
 
-exports.getSingleProduct = (req, res, next) => {
+
+exports.getSingleProduct = async (req, res, next) => {
+
+    const product = await productModel.find({ _id: req.params.id })
+
     res.json({
         success: true,
-        message: "Get single Product working!"
+        product
     })
 }
