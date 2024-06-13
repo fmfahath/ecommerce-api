@@ -1,7 +1,12 @@
-exports.getProducts = (req, res, next) => {
+const productModel = require('../models/productModel')
+
+exports.getProducts = async (req, res, next) => {
+
+    const products = await productModel.find({})
+
     res.json({
         success: true,
-        message: "Get Product working!"
+        products
     })
 }
 
