@@ -2,21 +2,37 @@ const productModel = require('../models/productModel')
 
 exports.getProducts = async (req, res, next) => {
 
-    const products = await productModel.find({})
+    try {
+        const products = await productModel.find({})
 
-    res.json({
-        success: true,
-        products
-    })
+        res.json({
+            success: true,
+            products
+        })
+    } catch (error) {
+        res.json({
+            success: false,
+            message: error.message
+        })
+    }
 }
 
 
 exports.getSingleProduct = async (req, res, next) => {
 
-    const product = await productModel.find({ _id: req.params.id })
+    try {
+        const product = await productModel.find({ _id: req.params.id })
 
-    res.json({
-        success: true,
-        product
-    })
+        res.json({
+            success: true,
+            product
+        })
+    }
+    catch (error) {
+
+        res.status(404).json({
+            success: false,
+            message: error.message
+        })
+    }
 }
