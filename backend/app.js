@@ -10,6 +10,9 @@ dotenv.config({ path: path.join(__dirname, 'config', 'config.env') })
 //connect database
 connectDatabase();
 
+//conver request data to json
+app.use(express.json())
+
 app.use('/api/v1/', products)
 app.use('/api/v1/', orders)
 
